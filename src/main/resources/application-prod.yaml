@@ -1,0 +1,58 @@
+spring:
+  application:
+    name: AllSpark-Official-Website
+  config:
+    activate:
+      on-profile: prod
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/allspark?characterEncoding=utf8&useSSL=false&rewriteBatchedStatements=true&serverTimezone=Asia/Shanghai
+    username: allspark
+    password: allspark520
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      validation-query: SELECT 1
+      test-while-idle: true
+      test-on-borrow: true
+      test-on-return: false
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      keep-alive: true
+
+server:
+  address: 0.0.0.0
+  port: 8721
+  servlet:
+    context-path: /api
+    session:
+      timeout: 12h
+      cookie:
+        max-age: 2592000
+
+mybatis-plus:
+  configuration:
+    log-impl: ''
+
+knife4j:
+  enable: true
+  basic:
+    enable: true
+    username: lotus
+    password: allspark520
+  openapi:
+    title: AllSpark 官网接口文档
+    description: AllSpark 工作室官网报名与运营接口
+    version: 2.0
+    group:
+      default:
+        group-name: default
+        api-rule: package
+        api-rule-resources:
+          - com.allspark.allsparkofficialwebsite.controller
+
+logging:
+  level:
+    root: info
